@@ -1,14 +1,29 @@
 import sys
 import time
 
-class Empty(object):
+# CLASSES
+
+class Wormhole(object):
+    pass
+
+class Spaceship(object):
+    """The spaceship"""
+    def __init__(self, computer):
+       
+
+class Player(object):
     """A few attributes"""
     def __init__(self):
         self.name = ""
         
-orbit = Empty()
+orbit = Player()
+
+
+# LEVELS
+
 
 def start(liste, name):
+    print(liste)
     print(orbit.name) #<- Test
     print('\n4 choices', name)
     print('\n1 # 1 ~ item 1')
@@ -20,7 +35,7 @@ def start(liste, name):
     pick = selected(choices)
     
     if pick == "1":
-        if "item 1" in liste:
+        if "item1" in liste:
             print("'Item 1' is in the list")
             print("loading...")
             time.sleep(2)
@@ -32,17 +47,30 @@ def start(liste, name):
             start(liste, name)
             
     elif pick == "2":
-        print("Item 1 in front of you")
-        print("What do you do:")
-        print("Pick item 1 (1)")
-        print("Walk away (2)")
-        scene1(liste, name)
+        print("\nItem 1 in front of you")
+        print("\nWhat do you do:")
+        print("\nPick item 1 (1)")
+        print("\nWalk away (2)")
+        choices = ['1', '2']
+        pick = selected(choices)
+        if pick == "1":
+            liste.append("item1")
+            start(liste, name)
+        else:
+            print("You didn't pick the item1")
+            return start(liste, name)
+        
+    #if pick == "3":
+        
         
         
 
-def scene1(liste, name):
+def scene1(liste, name):    
     print("Hey", name)
     print(liste)
+
+
+# Game Engine
 
 def selected(choices):
     
@@ -65,7 +93,8 @@ def setup():
     name = orbit.name
     return name
 
+
 # Empty list
-liste = [''] 
+liste = [] 
 # start function including liste and setup
 start(liste, setup())
