@@ -1,0 +1,71 @@
+import sys
+import time
+
+class Empty(object):
+    """A few attributes"""
+    def __init__(self):
+        self.name = ""
+        
+orbit = Empty()
+
+def start(liste, name):
+    print(orbit.name) #<- Test
+    print('\n4 choices', name)
+    print('\n1 # 1 ~ item 1')
+    print('\n2 # 2 = item 1')
+    print('\n3 # 3')
+    print('\n4 #4')
+    
+    choices = ['1', '2', '3', '4']
+    pick = selected(choices)
+    
+    if pick == "1":
+        if "item 1" in liste:
+            print("'Item 1' is in the list")
+            print("loading...")
+            time.sleep(2)
+            scene1(liste, name)
+        else:
+            print("'Item 1' is not in the list")
+            print(liste)
+            time.sleep(2)
+            start(liste, name)
+            
+    elif pick == "2":
+        print("Item 1 in front of you")
+        print("What do you do:")
+        print("Pick item 1 (1)")
+        print("Walk away (2)")
+        scene1(liste, name)
+        
+        
+
+def scene1(liste, name):
+    print("Hey", name)
+    print(liste)
+
+def selected(choices):
+    
+    select = input('\n? ')
+    if select in choices:
+        return select
+    elif select == 'q':
+         exit(0)
+    else:
+        print('Wrong input')
+        return selected(choices)
+    
+def setup():
+    text1 = "Who are you?"
+    for i in text1:
+        sys.stdout.write(i)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    orbit.name = input("> ")
+    name = orbit.name
+    return name
+
+# Empty list
+liste = [''] 
+# start function including liste and setup
+start(liste, setup())
